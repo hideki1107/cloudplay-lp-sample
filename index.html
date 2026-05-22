@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ネクスモバイルとクラウドプレイBOXのセット申込で、対象ゲームソフトを1本無料プレゼント。2026年6月30日まで実施中。">
+<title>クラウドプレイBOX × ネクスモバイル セット申込キャンペーン｜対象ゲーム1本プレゼント</title>
+<style>
+/* =========================================
+   ベース設定
+========================================= */
+:root {
+  --c-primary: #0066ff;
+  --c-primary-dark: #0048b8;
+  --c-primary-light: #e7f0ff;
+  --c-accent: #ff7a00;
+  --c-accent-dark: #e56a00;
+  --c-text: #1a1d29;
+  --c-text-sub: #5a6072;
+  --c-text-light: #8a90a0;
+  --c-bg: #ffffff;
+  --c-bg-alt: #f5f7fb;
+  --c-bg-dark: #0a1230;
+  --c-border: #e3e7ef;
+  --c-white: #ffffff;
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 2px 8px rgba(10, 18, 48, 0.06);
+  --shadow-md: 0 8px 24px rgba(10, 18, 48, 0.08);
+  --shadow-lg: 0 16px 48px rgba(10, 18, 48, 0.12);
+
+  --font-jp: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+  --font-en: "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  --header-h: 72px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+}
+
+body {
+  font-family: var(--font-jp);
+  color: var(--c-text);
+  background: var(--c-bg);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "palt";
+}
+
+img, svg { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.container--narrow { max-width: 800px; }
+
+.pc-only { display: none; }
+.sp-only { display: inline; }
+@media (min-width: 768px) {
+  .pc-only { display: inline; }
+  .sp-only { display: none; }
+}
+
+/* =========================================
+   ヘッダー
+========================================= */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: var(--header-h);
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(0);
+  transition: background var(--transition), backdrop-filter var(--transition), box-shadow var(--transition);
+}
+.site-header.is-scrolled {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-sm);
+}
+.header-inner {
+  max-width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  color: var(--c-text);
+}
+.site-header:not(.is-scrolled) .logo { color: var(--c-white); }
+.logo-mark {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--c-primary), #6a3cff);
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
+}
+.logo-mark::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 2px solid var(--c-white);
+  border-radius: 50%;
+  border-top-color: transparent;
+  border-right-color: transparent;
+}
+.logo-text { font-family: var(--font-en); }
+
+.global-nav {
+  margin-left: auto;
+  display: none;
+}
+@media (min-width: 960px) {
+  .global-nav { display: block; }
+}
+.global-nav ul { display: flex; gap: 32px; }
+.global-nav a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-text);
+  position: relative;
+  padding: 4px 0;
+  transition: color var(--transition);
+}
+.site-header:not(.is-scrolled) .global-nav a { color: rgba(255, 255, 255, 0.92); }
+.global-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: var(--c-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+.global-nav a:hover { color: var(--c-primary); }
+.site-header:not(.is-scrolled) .global-nav a:hover { color: var(--c-white); }
+.global-nav a:hover::after { transform: scaleX(1); }
+
+.header-cta {
+  display: none;
+  margin-left: auto;
+  padding: 10px 20px;
+  background: var(--c-accent);
+  color: var(--c-white);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: var(--radius-full);
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+  box-shadow: 0 4px 12px rgba(255, 122, 0, 0.35);
+}
+@media (min-width: 960px) {
+  .header-cta { display: inline-block; margin-left: 0; }
+}
+.header-cta:hover {
+  background: var(--c-accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.45);
+}
+
+/* ハンバーガー */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px; height: 20px;
+  margin-left: auto;
+  position: relative;
+  z-index: 110;
+}
+@media (min-width: 960px) { .hamburger { display: none; } }
+.hamburger span {
+  display: block;
+  height: 2px;
+  background: var(--c-text);
+  transition: transform var(--transition), opacity var(--transition), background var(--transition);
+}
+.site-header:not(.is-scrolled) .hamburger span { background: var(--c-white); }
+.hamburger.is-open span { background: var(--c-text); }
+.hamburger.is-open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.hamburger.is-open span:nth-child(2) { opacity: 0; }
+.hamburger.is-open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+@media (max-width: 959px) {
+  .global-nav {
+    position: fixed;
+    inset: 0;
+    background: var(--c-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition), visibility var(--transition);
+  }
+  .global-nav.is-open { opacity: 1; visibility: visible; display: flex; }
+  .global-nav ul { flex-direction: column; gap: 24px; text-align: center; }
+  .global-nav a { color: var(--c-text); font-size: 18px; }
+}
+
+/* =========================================
+   ヒーロー
+========================================= */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  padding: calc(var(--header-h) + 60px) 24px 80px;
+  background: linear-gradient(135deg, #0a1230 0%, #15265c 50%, #1e3a8a 100%);
+  color: var(--c-white);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  animation: blob 18s ease-in-out infinite;
+}
+.hero-blob--1 {
+  width: 500px; height: 500px;
+  background: #4f86ff;
+  top: -100px; left: -100px;
+}
+.hero-blob--2 {
+  width: 420px; height: 420px;
+  background: #b455ff;
+  bottom: -120px; right: 10%;
+  animation-delay: -6s;
+}
+.hero-blob--3 {
+  width: 340px; height: 340px;
+  background: #ff7a00;
+  top: 30%; right: -100px;
+  opacity: 0.35;
+  animation-delay: -12s;
+}
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.1); }
+  66% { transform: translate(-30px, 40px) scale(0.95); }
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 56px;
+  align-items: center;
+}
+@media (min-width: 960px) {
+  .hero-inner { grid-template-columns: 1.2fr 1fr; gap: 80px; }
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-family: var(--font-en);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-full);
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+}
+.hero-title {
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1.15;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+.hero-title-line1, .hero-title-line2 { display: block; }
+.hero-title-line2 {
+  background: linear-gradient(90deg, #ffd96a, #ff7a00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-lead {
+  font-size: clamp(15px, 2vw, 18px);
+  line-height: 1.85;
+  margin-bottom: 28px;
+  color: rgba(255, 255, 255, 0.88);
+}
+.hero-lead strong {
+  color: #ffd96a;
+  font-weight: 700;
+}
+.hero-points {
+  margin-bottom: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.hero-points li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.92);
+}
+.check {
+  display: inline-flex;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  flex-shrink: 0;
+  position: relative;
+}
+.check::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 10px; height: 5px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: translate(-50%, -65%) rotate(-45deg);
+}
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.hero-period {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.05em;
+}
+
+/* ヒーロービジュアル（CSS製デバイス） */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 360px;
+}
+.device {
+  position: relative;
+  width: 280px;
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.device-screen {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, #1a2148, #0a1230);
+  border-radius: 18px;
+  border: 6px solid #2a3370;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 0 0 2px rgba(255, 255, 255, 0.05);
+}
+.device-glow {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle, rgba(79, 134, 255, 0.6), transparent 60%);
+  animation: pulse 4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+.device-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 24px;
+  height: 100%;
+}
+.device-tile {
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--c-primary), #6a3cff);
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
+}
+.device-tile--2 { background: linear-gradient(135deg, var(--c-accent), #ffd96a); }
+.device-tile--3 { background: linear-gradient(135deg, #ff4d8d, #b455ff); }
+.device-tile--4 { background: linear-gradient(135deg, #00d4a0, #4f86ff); }
+.device-base {
+  width: 60%;
+  height: 14px;
+  margin: 0 auto;
+  background: #2a3370;
+  border-radius: 0 0 8px 8px;
+  margin-top: -2px;
+}
+
+.floating-card {
+  position: absolute;
+  background: var(--c-white);
+  color: var(--c-text);
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: floatCard 5s ease-in-out infinite;
+}
+.floating-card-label {
+  font-size: 11px;
+  color: var(--c-text-sub);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.floating-card-value {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--c-primary);
+}
+.floating-card-value em {
+  font-style: normal;
+  font-family: var(--font-en);
+  font-size: 24px;
+  color: var(--c-accent);
+}
+.floating-card--gift {
+  top: 10%;
+  right: -10px;
+  animation-delay: -2s;
+}
+.floating-card--price {
+  bottom: 5%;
+  left: -10px;
+}
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-en);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: rgba(255, 255, 255, 0.6);
+}
+.scroll-line {
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* =========================================
+   ボタン
+========================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 32px;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: var(--radius-full);
+  transition: transform var(--transition), background var(--transition), color var(--transition), box-shadow var(--transition);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--c-accent);
+  color: var(--c-white);
+  box-shadow: 0 8px 24px rgba(255, 122, 0, 0.4);
+}
+.btn-primary:hover {
+  background: var(--c-accent-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(255, 122, 0, 0.5);
+}
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+.btn-primary:hover::before { transform: translateX(100%); }
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--c-white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+.btn-lg { padding: 18px 36px; font-size: 16px; }
+.btn-xl {
+  padding: 22px 48px;
+  font-size: 18px;
+  min-width: 280px;
+}
+.btn-arrow {
+  display: inline-block;
+  width: 18px; height: 18px;
+  position: relative;
+  transition: transform var(--transition);
+}
+.btn-arrow::before {
+  content: "";
+  position: absolute;
+  top: 50%; left: 0; right: 4px;
+  height: 2px;
+  background: currentColor;
+  transform: translateY(-50%);
+}
+.btn-arrow::after {
+  content: "";
+  position: absolute;
+  top: 50%; right: 0;
+  width: 8px; height: 8px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: translateY(-50%) rotate(45deg);
+}
+.btn:hover .btn-arrow { transform: translateX(4px); }
+
+/* =========================================
+   セクション共通
+========================================= */
+.section {
+  padding: 100px 0;
+  position: relative;
+}
+@media (max-width: 767px) {
+  .section { padding: 64px 0; }
+}
+.section-head {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.section-eyebrow {
+  display: inline-block;
+  font-family: var(--font-en);
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+.section-title--small {
+  font-size: clamp(22px, 3vw, 30px);
+  margin-bottom: 32px;
+}
+.section-desc {
+  font-size: clamp(14px, 1.6vw, 16px);
+  color: var(--c-text-sub);
+  line-height: 1.9;
+}
+
+/* =========================================
+   キャンペーン概要
+========================================= */
+.section--about {
+  background: var(--c-bg);
+}
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 768px) {
+  .overview-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.overview-card {
+  background: var(--c-white);
+  padding: 40px 32px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--c-border);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.overview-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--c-primary), var(--c-accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s;
+}
+.overview-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+.overview-card:hover::before { transform: scaleX(1); }
+.overview-num {
+  font-family: var(--font-en);
+  font-size: 48px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--c-primary), var(--c-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.overview-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+.overview-text {
+  font-size: 14px;
+  color: var(--c-text-sub);
+  line-height: 1.85;
+}
+
+/* =========================================
+   ラインナップ
+========================================= */
+.section--lineup {
+  background: var(--c-bg-alt);
+}
+.lineup-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media (min-width: 600px) {
+  .lineup-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+}
+@media (min-width: 960px) {
+  .lineup-grid { grid-template-columns: repeat(5, 1fr); gap: 24px; }
+}
+.game-card {
+  background: var(--c-white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--c-border);
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+}
+.game-card:hover {
+  transform: translateY(-6px) rotate(-1deg);
+  box-shadow: var(--shadow-lg);
+}
+.game-cover {
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.game-cover-label {
+  font-family: var(--font-en);
+  font-size: 64px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.game-cover--a { background: linear-gradient(135deg, #ff4d8d, #b455ff); }
+.game-cover--b { background: linear-gradient(135deg, #00d4a0, #00a8d4); }
+.game-cover--c { background: linear-gradient(135deg, #ff7a00, #ffd96a); }
+.game-cover--d { background: linear-gradient(135deg, #4f86ff, #6a3cff); }
+.game-cover--e { background: linear-gradient(135deg, #1a2148, #4f86ff); }
+.game-cover--f { background: linear-gradient(135deg, #ff5757, #ffd96a); }
+.game-cover--g { background: linear-gradient(135deg, #00a8d4, #4f86ff); }
+.game-cover--h { background: linear-gradient(135deg, #ffd96a, #00d4a0); }
+.game-cover--i { background: linear-gradient(135deg, #2a3370, #ff5757); }
+.game-cover--j { background: linear-gradient(135deg, #b455ff, #ff4d8d); }
+.game-title {
+  padding: 16px 16px 4px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.game-genre {
+  padding: 0 16px 16px;
+  font-size: 12px;
+  color: var(--c-text-light);
+}
+.lineup-note {
+  margin-top: 32px;
+  font-size: 12px;
+  color: var(--c-text-light);
+  text-align: center;
+}
+
+/* =========================================
+   応募の流れ
+========================================= */
+.section--steps {
+  background: var(--c-bg-dark);
+  color: var(--c-white);
+}
+.section-head--light .section-eyebrow { color: #6a9eff; }
+.section-head--light .section-desc { color: rgba(255, 255, 255, 0.75); }
+.steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  counter-reset: step;
+  position: relative;
+}
+@media (min-width: 768px) {
+  .steps {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .steps::before {
+    content: "";
+    position: absolute;
+    top: 40px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2) 20%, rgba(255,255,255,0.2) 80%, transparent);
+    z-index: 0;
+  }
+}
+.step {
+  position: relative;
+  padding: 32px 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition), background var(--transition);
+  z-index: 1;
+}
+.step:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.07);
+}
+.step-num {
+  display: inline-block;
+  font-family: var(--font-en);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--c-accent);
+  padding: 4px 12px;
+  background: rgba(255, 122, 0, 0.15);
+  border-radius: var(--radius-full);
+  margin-bottom: 16px;
+}
+.step-title {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+.step-text {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.85;
+}
+
+/* =========================================
+   対象者・条件
+========================================= */
+.section--terms { background: var(--c-bg); padding: 60px 0; }
+.terms-box {
+  background: var(--c-bg-alt);
+  border-radius: var(--radius-lg);
+  padding: 48px;
+  border-left: 6px solid var(--c-primary);
+}
+@media (max-width: 767px) {
+  .terms-box { padding: 32px 24px; }
+}
+.terms-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 24px;
+}
+.terms-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.terms-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--c-border);
+}
+.terms-row:last-child { border-bottom: none; padding-bottom: 0; }
+@media (min-width: 600px) {
+  .terms-row {
+    grid-template-columns: 160px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+}
+.terms-row dt {
+  font-weight: 700;
+  color: var(--c-primary);
+  font-size: 14px;
+}
+.terms-row dd {
+  font-size: 14px;
+  color: var(--c-text);
+  line-height: 1.85;
+}
+
+/* =========================================
+   アコーディオン（注意事項 & FAQ）
+========================================= */
+.section--notes { background: var(--c-bg); padding-top: 40px; padding-bottom: 60px; }
+.section--faq { background: var(--c-bg-alt); }
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.accordion-item {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.accordion-item.is-open {
+  border-color: var(--c-primary);
+  box-shadow: var(--shadow-md);
+}
+.accordion-trigger {
+  width: 100%;
+  padding: 20px 24px;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background var(--transition);
+}
+.accordion-trigger:hover { background: var(--c-primary-light); }
+.accordion-trigger > span:first-child { flex: 1; }
+.faq-q {
+  color: var(--c-primary);
+  font-family: var(--font-en);
+  font-size: 18px;
+  font-weight: 900;
+  flex: 0 0 auto !important;
+}
+.faq-q-text { flex: 1; }
+.accordion-icon {
+  width: 24px; height: 24px;
+  position: relative;
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+.accordion-icon::before,
+.accordion-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  background: var(--c-primary);
+  border-radius: 1px;
+  transition: transform var(--transition);
+}
+.accordion-icon::before {
+  width: 12px; height: 2px;
+  transform: translate(-50%, -50%);
+}
+.accordion-icon::after {
+  width: 2px; height: 12px;
+  transform: translate(-50%, -50%);
+}
+.accordion-item.is-open .accordion-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+  opacity: 0;
+}
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.accordion-panel-inner {
+  padding: 0 24px 24px;
+  font-size: 14px;
+  color: var(--c-text-sub);
+  line-height: 1.9;
+}
+.accordion-panel-inner ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.accordion-panel-inner ul li {
+  padding-left: 18px;
+  position: relative;
+}
+.accordion-panel-inner ul li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 12px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--c-primary);
+}
+
+/* =========================================
+   フッターCTA
+========================================= */
+.section--entry {
+  background: linear-gradient(135deg, var(--c-primary), #6a3cff 60%, var(--c-accent));
+  color: var(--c-white);
+  position: relative;
+  overflow: hidden;
+}
+.section--entry::before,
+.section--entry::after {
+  content: "";
+  position: absolute;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.section--entry::before { top: -200px; left: -100px; }
+.section--entry::after { bottom: -200px; right: -100px; }
+.entry-box {
+  position: relative;
+  text-align: center;
+  padding: 40px 24px;
+}
+.entry-eyebrow {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+}
+.entry-title {
+  font-size: clamp(28px, 4.5vw, 44px);
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+.entry-lead {
+  font-size: 16px;
+  margin-bottom: 36px;
+  color: rgba(255,255,255,0.9);
+}
+.entry-note {
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  margin-top: 20px;
+}
+.section--entry .btn-primary {
+  background: var(--c-white);
+  color: var(--c-accent);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+}
+.section--entry .btn-primary:hover {
+  background: var(--c-white);
+  color: var(--c-accent-dark);
+}
+
+/* =========================================
+   フッター
+========================================= */
+.site-footer {
+  background: var(--c-bg-dark);
+  color: rgba(255,255,255,0.7);
+  padding: 60px 0 24px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+@media (min-width: 768px) {
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+.logo--light { color: var(--c-white); }
+.footer-tagline {
+  font-size: 13px;
+  margin-top: 12px;
+}
+.footer-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 32px;
+}
+@media (min-width: 768px) {
+  .footer-nav { display: flex; justify-content: flex-end; align-items: center; }
+}
+.footer-nav a {
+  font-size: 13px;
+  transition: color var(--transition);
+}
+.footer-nav a:hover { color: var(--c-white); }
+.footer-bottom {
+  padding-top: 24px;
+}
+.footer-copy {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  font-family: var(--font-en);
+}
+
+/* =========================================
+   追従CTA
+========================================= */
+.floating-cta {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 28px;
+  background: var(--c-accent);
+  color: var(--c-white);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 10px 30px rgba(255,122,0,0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity var(--transition), visibility var(--transition), transform var(--transition), background var(--transition);
+}
+.floating-cta.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.floating-cta:hover {
+  background: var(--c-accent-dark);
+  transform: translateY(-4px);
+}
+@media (max-width: 767px) {
+  .floating-cta {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+    justify-content: center;
+    padding: 14px 24px;
+  }
+}
+
+/* =========================================
+   スクロール表示アニメーション
+========================================= */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* リダクションモーション */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===== ヘッダー ===== -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#top" class="logo">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-text">NexMobile</span>
+    </a>
+    <nav class="global-nav" id="globalNav" aria-label="メインナビゲーション">
+      <ul>
+        <li><a href="#about">キャンペーン概要</a></li>
+        <li><a href="#lineup">対象ソフト</a></li>
+        <li><a href="#steps">応募の流れ</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <a href="#entry" class="header-cta">今すぐ申込</a>
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="globalNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ===== ヒーロー ===== -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-blob hero-blob--1"></div>
+    <div class="hero-blob hero-blob--2"></div>
+    <div class="hero-blob hero-blob--3"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-eyebrow">SET DEAL CAMPAIGN 2026</p>
+      <h1 class="hero-title">
+        <span class="hero-title-line1">クラウドゲームを、</span>
+        <span class="hero-title-line2">ポケットの中へ。</span>
+      </h1>
+      <p class="hero-lead">
+        ネクスモバイルとクラウドプレイBOXのセット申込で、<br>
+        <strong>対象ゲームソフト1本を無料プレゼント。</strong>
+      </p>
+      <ul class="hero-points">
+        <li><span class="check" aria-hidden="true"></span>新規・MNP・既存ユーザーすべて対象</li>
+        <li><span class="check" aria-hidden="true"></span>10タイトルから自由に選べる</li>
+        <li><span class="check" aria-hidden="true"></span>申込から最短3日でお届け</li>
+      </ul>
+      <div class="hero-cta-group">
+        <a href="#entry" class="btn btn-primary btn-lg">
+          無料でゲームをもらう
+          <span class="btn-arrow" aria-hidden="true"></span>
+        </a>
+        <a href="#about" class="btn btn-ghost">キャンペーン詳細を見る</a>
+      </div>
+      <p class="hero-period">実施期間：2026年4月1日 〜 2026年6月30日</p>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="device">
+        <div class="device-screen">
+          <div class="device-glow"></div>
+          <div class="device-grid">
+            <div class="device-tile device-tile--1"></div>
+            <div class="device-tile device-tile--2"></div>
+            <div class="device-tile device-tile--3"></div>
+            <div class="device-tile device-tile--4"></div>
+          </div>
+        </div>
+        <div class="device-base"></div>
+      </div>
+      <div class="floating-card floating-card--gift">
+        <span class="floating-card-label">プレゼント</span>
+        <span class="floating-card-value">対象ソフト1本</span>
+      </div>
+      <div class="floating-card floating-card--price">
+        <span class="floating-card-label">月額</span>
+        <span class="floating-card-value"><em>980</em>円〜</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>SCROLL</span>
+    <span class="scroll-line" aria-hidden="true"></span>
+  </div>
+</section>
+
+<!-- ===== キャンペーン概要 ===== -->
+<section class="section section--about" id="about">
+  <div class="container">
+    <div class="section-head">
+      <p class="section-eyebrow">CAMPAIGN OVERVIEW</p>
+      <h2 class="section-title">キャンペーン概要</h2>
+      <p class="section-desc">
+        ネクスモバイル回線とクラウドプレイBOXをセット契約された方全員に、<br class="pc-only">
+        対象タイトルの中から好きなゲームソフト1本を無料でプレゼントします。
+      </p>
+    </div>
+
+    <div class="overview-grid">
+      <article class="overview-card">
+        <div class="overview-num">01</div>
+        <h3 class="overview-title">好きな1本を選べる</h3>
+        <p class="overview-text">アクション、RPG、パズルなど10タイトルから1本を選択。家族でも一人でも楽しめるラインナップです。</p>
+      </article>
+      <article class="overview-card">
+        <div class="overview-num">02</div>
+        <h3 class="overview-title">どこでもプレイ</h3>
+        <p class="overview-text">クラウドプレイBOXとネクスモバイルなら、外出先でも安定した速度でゲームをストリーミング再生できます。</p>
+      </article>
+      <article class="overview-card">
+        <div class="overview-num">03</div>
+        <h3 class="overview-title">最短3日でお届け</h3>
+        <p class="overview-text">オンライン申込で、最短3営業日でご自宅にデバイスとソフトコードが届きます。面倒な手続きは一切ありません。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 対象ソフト ===== -->
+<section class="section section--lineup" id="lineup">
+  <div class="container">
+    <div class="section-head">
+      <p class="section-eyebrow">GAME LINEUP</p>
+      <h2 class="section-title">対象ソフトラインナップ</h2>
+      <p class="section-desc">下記10タイトルからお好きな1本をお選びいただけます。</p>
+    </div>
+
+    <div class="lineup-grid">
+      <article class="game-card" data-game="action">
+        <div class="game-cover game-cover--a"><span class="game-cover-label">A</span></div>
+        <h3 class="game-title">スターラッシュ・サーガ</h3>
+        <p class="game-genre">アクションRPG</p>
+      </article>
+      <article class="game-card" data-game="puzzle">
+        <div class="game-cover game-cover--b"><span class="game-cover-label">B</span></div>
+        <h3 class="game-title">ブロックパレード</h3>
+        <p class="game-genre">パズル</p>
+      </article>
+      <article class="game-card" data-game="racing">
+        <div class="game-cover game-cover--c"><span class="game-cover-label">C</span></div>
+        <h3 class="game-title">ハイパードリフト</h3>
+        <p class="game-genre">レーシング</p>
+      </article>
+      <article class="game-card" data-game="sports">
+        <div class="game-cover game-cover--d"><span class="game-cover-label">D</span></div>
+        <h3 class="game-title">フィールドキングス'26</h3>
+        <p class="game-genre">スポーツ</p>
+      </article>
+      <article class="game-card" data-game="rpg">
+        <div class="game-cover game-cover--e"><span class="game-cover-label">E</span></div>
+        <h3 class="game-title">エルディア年代記</h3>
+        <p class="game-genre">RPG</p>
+      </article>
+      <article class="game-card" data-game="party">
+        <div class="game-cover game-cover--f"><span class="game-cover-label">F</span></div>
+        <h3 class="game-title">パーティーマスターズ</h3>
+        <p class="game-genre">パーティー</p>
+      </article>
+      <article class="game-card" data-game="adventure">
+        <div class="game-cover game-cover--g"><span class="game-cover-label">G</span></div>
+        <h3 class="game-title">ロストアイランズ</h3>
+        <p class="game-genre">アドベンチャー</p>
+      </article>
+      <article class="game-card" data-game="simulation">
+        <div class="game-cover game-cover--h"><span class="game-cover-label">H</span></div>
+        <h3 class="game-title">マイタウンライフ</h3>
+        <p class="game-genre">シミュレーション</p>
+      </article>
+      <article class="game-card" data-game="shooter">
+        <div class="game-cover game-cover--i"><span class="game-cover-label">I</span></div>
+        <h3 class="game-title">ネオフロントライン</h3>
+        <p class="game-genre">シューティング</p>
+      </article>
+      <article class="game-card" data-game="rhythm">
+        <div class="game-cover game-cover--j"><span class="game-cover-label">J</span></div>
+        <h3 class="game-title">リズムスターズ</h3>
+        <p class="game-genre">音楽</p>
+      </article>
+    </div>
+
+    <p class="lineup-note">※ ラインナップは予告なく変更される場合があります。最新情報は申込画面にてご確認ください。</p>
+  </div>
+</section>
+
+<!-- ===== 応募の流れ ===== -->
+<section class="section section--steps" id="steps">
+  <div class="container">
+    <div class="section-head section-head--light">
+      <p class="section-eyebrow">HOW TO ENTRY</p>
+      <h2 class="section-title">応募の流れ</h2>
+      <p class="section-desc">オンラインで完結。最短3営業日でお届けします。</p>
+    </div>
+
+    <ol class="steps">
+      <li class="step">
+        <div class="step-num">STEP 01</div>
+        <h3 class="step-title">セットプランを申込</h3>
+        <p class="step-text">ネクスモバイル公式サイトで「クラウドプレイBOXセット」を選択し、必要事項を入力します。</p>
+      </li>
+      <li class="step">
+        <div class="step-num">STEP 02</div>
+        <h3 class="step-title">対象ソフトを選ぶ</h3>
+        <p class="step-text">申込画面で、ラインナップから好きなゲームソフトを1本選択してください。</p>
+      </li>
+      <li class="step">
+        <div class="step-num">STEP 03</div>
+        <h3 class="step-title">デバイス・コード受取</h3>
+        <p class="step-text">最短3営業日でクラウドプレイBOX本体と、ゲームソフトのダウンロードコードをお届けします。</p>
+      </li>
+      <li class="step">
+        <div class="step-num">STEP 04</div>
+        <h3 class="step-title">すぐにプレイ開始</h3>
+        <p class="step-text">本体をテレビまたはスマートフォンに接続し、コードを入力するだけ。今すぐ遊べます。</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== 対象者・条件 ===== -->
+<section class="section section--terms">
+  <div class="container">
+    <div class="terms-box">
+      <h2 class="terms-title">対象者・適用条件</h2>
+      <dl class="terms-list">
+        <div class="terms-row">
+          <dt>対象者</dt>
+          <dd>ネクスモバイル回線とクラウドプレイBOXをセットで新規申込される個人のお客さま（新規契約・MNP・既存回線追加すべて対象）</dd>
+        </div>
+        <div class="terms-row">
+          <dt>申込期間</dt>
+          <dd>2026年4月1日(水) 〜 2026年6月30日(火) 23:59 まで</dd>
+        </div>
+        <div class="terms-row">
+          <dt>特典内容</dt>
+          <dd>対象ゲームソフト10タイトルの中から1本を無料プレゼント（ダウンロードコード形式）</dd>
+        </div>
+        <div class="terms-row">
+          <dt>お届け時期</dt>
+          <dd>申込完了から最短3営業日以内に発送</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 注意事項 ===== -->
+<section class="section section--notes">
+  <div class="container">
+    <h2 class="section-title section-title--small">注意事項</h2>
+    <div class="accordion" data-accordion>
+      <div class="accordion-item">
+        <button type="button" class="accordion-trigger" aria-expanded="false">
+          <span>キャンペーン適用に関する注意</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <ul>
+              <li>本キャンペーンは予告なく内容を変更、または終了する場合があります。</li>
+              <li>ソフトのダウンロードコードはお客さまの登録メールアドレス宛にお送りします。</li>
+              <li>コードの有効期限は発行日から90日間です。期限を過ぎると無効となります。</li>
+              <li>同一名義での重複申込は無効となり、すべての特典が取り消される場合があります。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button type="button" class="accordion-trigger" aria-expanded="false">
+          <span>解約・返品について</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <ul>
+              <li>契約から180日以内に解約された場合、特典相当額を別途請求させていただきます。</li>
+              <li>クラウドプレイBOX本体の初期不良は到着から14日以内にサポート窓口までご連絡ください。</li>
+              <li>お客様都合による返品は原則受付しておりません。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button type="button" class="accordion-trigger" aria-expanded="false">
+          <span>動作環境・通信について</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <ul>
+              <li>クラウドプレイBOXのご利用には、安定した通信環境（実効速度20Mbps以上推奨）が必要です。</li>
+              <li>通信環境やサーバー負荷により、一部タイトルで描画遅延が発生する場合があります。</li>
+              <li>ご契約プランによっては通信量制限の対象となります。詳細はネクスモバイル公式サイトをご確認ください。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section section--faq" id="faq">
+  <div class="container container--narrow">
+    <div class="section-head">
+      <p class="section-eyebrow">FAQ</p>
+      <h2 class="section-title">よくあるご質問</h2>
+    </div>
+    <div class="accordion" data-accordion>
+      <div class="accordion-item">
+        <button type="button" class="accordion-trigger" aria-expanded="false">
+          <span class="faq-q">Q.</span>
+          <span class="faq-q-text">既にネクスモバイルを契約していますが対象になりますか？</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <p>はい、既存契約者の方でも、新たにクラウドプレイBOXをセット申込みいただければ対象となります。マイページから「BOXセット追加」をご選択ください。</p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button type="button" class="accordion-trigger" aria-expanded="false">
+          <span class="faq-q">Q.</span>
+          <span class="faq-q-text">ゲームソフトはあとから変更できますか？</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <p>申し訳ありませんが、申込完了後の変更は承っておりません。お申込前にラインナップをよくご確認ください。</p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button type="button" class="accordion-trigger" aria-expanded="false">
+          <span class="faq-q">Q.</span>
+          <span class="faq-q-text">クラウドプレイBOXはテレビがなくても使えますか？</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <p>はい。専用アプリをインストールすることで、スマートフォンやタブレットでもプレイ可能です。コントローラーはBluetooth接続に対応しています。</p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button type="button" class="accordion-trigger" aria-expanded="false">
+          <span class="faq-q">Q.</span>
+          <span class="faq-q-text">家族名義でも申込めますか？</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <p>はい、ご家族の名義で別途お申込みいただけます。ただし同一住所での重複申込は1世帯1回までとさせていただきます。</p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button type="button" class="accordion-trigger" aria-expanded="false">
+          <span class="faq-q">Q.</span>
+          <span class="faq-q-text">申込後にキャンセルできますか？</span>
+          <span class="accordion-icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <p>商品発送前であればキャンセル可能です。マイページからキャンセル手続きを行ってください。発送後のキャンセルは原則承っておりません。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== フッターCTA ===== -->
+<section class="section section--entry" id="entry">
+  <div class="container">
+    <div class="entry-box">
+      <p class="entry-eyebrow">受付期間：2026年6月30日まで</p>
+      <h2 class="entry-title">対象ゲームを<br class="sp-only">今すぐ無料で手に入れる</h2>
+      <p class="entry-lead">セット申込はオンラインで5分。最短3日でお届けします。</p>
+      <a href="#" class="btn btn-primary btn-xl">
+        無料でゲームをもらう
+        <span class="btn-arrow" aria-hidden="true"></span>
+      </a>
+      <p class="entry-note">※ お申込にはネクスモバイル会員登録が必要です。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== フッター ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#top" class="logo logo--light">
+          <span class="logo-mark" aria-hidden="true"></span>
+          <span class="logo-text">NexMobile</span>
+        </a>
+        <p class="footer-tagline">クラウドゲームを、ポケットの中へ。</p>
+      </div>
+      <nav class="footer-nav" aria-label="フッターナビゲーション">
+        <ul>
+          <li><a href="#about">キャンペーン概要</a></li>
+          <li><a href="#lineup">対象ソフト</a></li>
+          <li><a href="#steps">応募の流れ</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 NexMobile Inc. (架空のサンプルサイトです)</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== 追従CTA ===== -->
+<a href="#entry" class="floating-cta" id="floatingCta" aria-label="今すぐ申込">
+  <span class="floating-cta-text">今すぐ申込</span>
+  <span class="btn-arrow" aria-hidden="true"></span>
+</a>
+
+
+</body>
+</html>

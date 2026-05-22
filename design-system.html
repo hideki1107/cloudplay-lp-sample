@@ -1,0 +1,2416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440, initial-scale=1">
+<title>デザインシステム｜クラウドプレイBOXキャンペーンLP</title>
+<style>
+/* =========================================
+   ベース設定
+========================================= */
+:root {
+  --c-primary: #0066ff;
+  --c-primary-dark: #0048b8;
+  --c-primary-light: #e7f0ff;
+  --c-accent: #ff7a00;
+  --c-accent-dark: #e56a00;
+  --c-text: #1a1d29;
+  --c-text-sub: #5a6072;
+  --c-text-light: #8a90a0;
+  --c-bg: #ffffff;
+  --c-bg-alt: #f5f7fb;
+  --c-bg-dark: #0a1230;
+  --c-border: #e3e7ef;
+  --c-white: #ffffff;
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 2px 8px rgba(10, 18, 48, 0.06);
+  --shadow-md: 0 8px 24px rgba(10, 18, 48, 0.08);
+  --shadow-lg: 0 16px 48px rgba(10, 18, 48, 0.12);
+
+  --font-jp: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+  --font-en: "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  --header-h: 72px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+}
+
+body {
+  font-family: var(--font-jp);
+  color: var(--c-text);
+  background: var(--c-bg);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "palt";
+}
+
+img, svg { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.container--narrow { max-width: 800px; }
+
+.pc-only { display: none; }
+.sp-only { display: inline; }
+@media (min-width: 768px) {
+  .pc-only { display: inline; }
+  .sp-only { display: none; }
+}
+
+/* =========================================
+   ヘッダー
+========================================= */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: var(--header-h);
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(0);
+  transition: background var(--transition), backdrop-filter var(--transition), box-shadow var(--transition);
+}
+.site-header.is-scrolled {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-sm);
+}
+.header-inner {
+  max-width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  color: var(--c-text);
+}
+.site-header:not(.is-scrolled) .logo { color: var(--c-white); }
+.logo-mark {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--c-primary), #6a3cff);
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
+}
+.logo-mark::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 2px solid var(--c-white);
+  border-radius: 50%;
+  border-top-color: transparent;
+  border-right-color: transparent;
+}
+.logo-text { font-family: var(--font-en); }
+
+.global-nav {
+  margin-left: auto;
+  display: none;
+}
+@media (min-width: 960px) {
+  .global-nav { display: block; }
+}
+.global-nav ul { display: flex; gap: 32px; }
+.global-nav a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-text);
+  position: relative;
+  padding: 4px 0;
+  transition: color var(--transition);
+}
+.site-header:not(.is-scrolled) .global-nav a { color: rgba(255, 255, 255, 0.92); }
+.global-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: var(--c-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+.global-nav a:hover { color: var(--c-primary); }
+.site-header:not(.is-scrolled) .global-nav a:hover { color: var(--c-white); }
+.global-nav a:hover::after { transform: scaleX(1); }
+
+.header-cta {
+  display: none;
+  margin-left: auto;
+  padding: 10px 20px;
+  background: var(--c-accent);
+  color: var(--c-white);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: var(--radius-full);
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+  box-shadow: 0 4px 12px rgba(255, 122, 0, 0.35);
+}
+@media (min-width: 960px) {
+  .header-cta { display: inline-block; margin-left: 0; }
+}
+.header-cta:hover {
+  background: var(--c-accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.45);
+}
+
+/* ハンバーガー */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px; height: 20px;
+  margin-left: auto;
+  position: relative;
+  z-index: 110;
+}
+@media (min-width: 960px) { .hamburger { display: none; } }
+.hamburger span {
+  display: block;
+  height: 2px;
+  background: var(--c-text);
+  transition: transform var(--transition), opacity var(--transition), background var(--transition);
+}
+.site-header:not(.is-scrolled) .hamburger span { background: var(--c-white); }
+.hamburger.is-open span { background: var(--c-text); }
+.hamburger.is-open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.hamburger.is-open span:nth-child(2) { opacity: 0; }
+.hamburger.is-open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+@media (max-width: 959px) {
+  .global-nav {
+    position: fixed;
+    inset: 0;
+    background: var(--c-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition), visibility var(--transition);
+  }
+  .global-nav.is-open { opacity: 1; visibility: visible; display: flex; }
+  .global-nav ul { flex-direction: column; gap: 24px; text-align: center; }
+  .global-nav a { color: var(--c-text); font-size: 18px; }
+}
+
+/* =========================================
+   ヒーロー
+========================================= */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  padding: calc(var(--header-h) + 60px) 24px 80px;
+  background: linear-gradient(135deg, #0a1230 0%, #15265c 50%, #1e3a8a 100%);
+  color: var(--c-white);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  animation: blob 18s ease-in-out infinite;
+}
+.hero-blob--1 {
+  width: 500px; height: 500px;
+  background: #4f86ff;
+  top: -100px; left: -100px;
+}
+.hero-blob--2 {
+  width: 420px; height: 420px;
+  background: #b455ff;
+  bottom: -120px; right: 10%;
+  animation-delay: -6s;
+}
+.hero-blob--3 {
+  width: 340px; height: 340px;
+  background: #ff7a00;
+  top: 30%; right: -100px;
+  opacity: 0.35;
+  animation-delay: -12s;
+}
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.1); }
+  66% { transform: translate(-30px, 40px) scale(0.95); }
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 56px;
+  align-items: center;
+}
+@media (min-width: 960px) {
+  .hero-inner { grid-template-columns: 1.2fr 1fr; gap: 80px; }
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-family: var(--font-en);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-full);
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+}
+.hero-title {
+  font-size: clamp(36px, 6vw, 64px);
+  line-height: 1.15;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+.hero-title-line1, .hero-title-line2 { display: block; }
+.hero-title-line2 {
+  background: linear-gradient(90deg, #ffd96a, #ff7a00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-lead {
+  font-size: clamp(15px, 2vw, 18px);
+  line-height: 1.85;
+  margin-bottom: 28px;
+  color: rgba(255, 255, 255, 0.88);
+}
+.hero-lead strong {
+  color: #ffd96a;
+  font-weight: 700;
+}
+.hero-points {
+  margin-bottom: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.hero-points li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.92);
+}
+.check {
+  display: inline-flex;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  flex-shrink: 0;
+  position: relative;
+}
+.check::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 10px; height: 5px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: translate(-50%, -65%) rotate(-45deg);
+}
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.hero-period {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.05em;
+}
+
+/* ヒーロービジュアル（CSS製デバイス） */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 360px;
+}
+.device {
+  position: relative;
+  width: 280px;
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.device-screen {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, #1a2148, #0a1230);
+  border-radius: 18px;
+  border: 6px solid #2a3370;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 0 0 2px rgba(255, 255, 255, 0.05);
+}
+.device-glow {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle, rgba(79, 134, 255, 0.6), transparent 60%);
+  animation: pulse 4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+.device-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 24px;
+  height: 100%;
+}
+.device-tile {
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--c-primary), #6a3cff);
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
+}
+.device-tile--2 { background: linear-gradient(135deg, var(--c-accent), #ffd96a); }
+.device-tile--3 { background: linear-gradient(135deg, #ff4d8d, #b455ff); }
+.device-tile--4 { background: linear-gradient(135deg, #00d4a0, #4f86ff); }
+.device-base {
+  width: 60%;
+  height: 14px;
+  margin: 0 auto;
+  background: #2a3370;
+  border-radius: 0 0 8px 8px;
+  margin-top: -2px;
+}
+
+.floating-card {
+  position: absolute;
+  background: var(--c-white);
+  color: var(--c-text);
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: floatCard 5s ease-in-out infinite;
+}
+.floating-card-label {
+  font-size: 11px;
+  color: var(--c-text-sub);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.floating-card-value {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--c-primary);
+}
+.floating-card-value em {
+  font-style: normal;
+  font-family: var(--font-en);
+  font-size: 24px;
+  color: var(--c-accent);
+}
+.floating-card--gift {
+  top: 10%;
+  right: -10px;
+  animation-delay: -2s;
+}
+.floating-card--price {
+  bottom: 5%;
+  left: -10px;
+}
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-en);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: rgba(255, 255, 255, 0.6);
+}
+.scroll-line {
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* =========================================
+   ボタン
+========================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 32px;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: var(--radius-full);
+  transition: transform var(--transition), background var(--transition), color var(--transition), box-shadow var(--transition);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--c-accent);
+  color: var(--c-white);
+  box-shadow: 0 8px 24px rgba(255, 122, 0, 0.4);
+}
+.btn-primary:hover {
+  background: var(--c-accent-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(255, 122, 0, 0.5);
+}
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+.btn-primary:hover::before { transform: translateX(100%); }
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--c-white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+.btn-lg { padding: 18px 36px; font-size: 16px; }
+.btn-xl {
+  padding: 22px 48px;
+  font-size: 18px;
+  min-width: 280px;
+}
+.btn-arrow {
+  display: inline-block;
+  width: 18px; height: 18px;
+  position: relative;
+  transition: transform var(--transition);
+}
+.btn-arrow::before {
+  content: "";
+  position: absolute;
+  top: 50%; left: 0; right: 4px;
+  height: 2px;
+  background: currentColor;
+  transform: translateY(-50%);
+}
+.btn-arrow::after {
+  content: "";
+  position: absolute;
+  top: 50%; right: 0;
+  width: 8px; height: 8px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: translateY(-50%) rotate(45deg);
+}
+.btn:hover .btn-arrow { transform: translateX(4px); }
+
+/* =========================================
+   セクション共通
+========================================= */
+.section {
+  padding: 100px 0;
+  position: relative;
+}
+@media (max-width: 767px) {
+  .section { padding: 64px 0; }
+}
+.section-head {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.section-eyebrow {
+  display: inline-block;
+  font-family: var(--font-en);
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  font-weight: 700;
+  color: var(--c-primary);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+.section-title--small {
+  font-size: clamp(22px, 3vw, 30px);
+  margin-bottom: 32px;
+}
+.section-desc {
+  font-size: clamp(14px, 1.6vw, 16px);
+  color: var(--c-text-sub);
+  line-height: 1.9;
+}
+
+/* =========================================
+   キャンペーン概要
+========================================= */
+.section--about {
+  background: var(--c-bg);
+}
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 768px) {
+  .overview-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.overview-card {
+  background: var(--c-white);
+  padding: 40px 32px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--c-border);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.overview-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--c-primary), var(--c-accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s;
+}
+.overview-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+.overview-card:hover::before { transform: scaleX(1); }
+.overview-num {
+  font-family: var(--font-en);
+  font-size: 48px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--c-primary), var(--c-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.overview-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+.overview-text {
+  font-size: 14px;
+  color: var(--c-text-sub);
+  line-height: 1.85;
+}
+
+/* =========================================
+   ラインナップ
+========================================= */
+.section--lineup {
+  background: var(--c-bg-alt);
+}
+.lineup-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media (min-width: 600px) {
+  .lineup-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+}
+@media (min-width: 960px) {
+  .lineup-grid { grid-template-columns: repeat(5, 1fr); gap: 24px; }
+}
+.game-card {
+  background: var(--c-white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--c-border);
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+}
+.game-card:hover {
+  transform: translateY(-6px) rotate(-1deg);
+  box-shadow: var(--shadow-lg);
+}
+.game-cover {
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.game-cover-label {
+  font-family: var(--font-en);
+  font-size: 64px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.game-cover--a { background: linear-gradient(135deg, #ff4d8d, #b455ff); }
+.game-cover--b { background: linear-gradient(135deg, #00d4a0, #00a8d4); }
+.game-cover--c { background: linear-gradient(135deg, #ff7a00, #ffd96a); }
+.game-cover--d { background: linear-gradient(135deg, #4f86ff, #6a3cff); }
+.game-cover--e { background: linear-gradient(135deg, #1a2148, #4f86ff); }
+.game-cover--f { background: linear-gradient(135deg, #ff5757, #ffd96a); }
+.game-cover--g { background: linear-gradient(135deg, #00a8d4, #4f86ff); }
+.game-cover--h { background: linear-gradient(135deg, #ffd96a, #00d4a0); }
+.game-cover--i { background: linear-gradient(135deg, #2a3370, #ff5757); }
+.game-cover--j { background: linear-gradient(135deg, #b455ff, #ff4d8d); }
+.game-title {
+  padding: 16px 16px 4px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.game-genre {
+  padding: 0 16px 16px;
+  font-size: 12px;
+  color: var(--c-text-light);
+}
+.lineup-note {
+  margin-top: 32px;
+  font-size: 12px;
+  color: var(--c-text-light);
+  text-align: center;
+}
+
+/* =========================================
+   応募の流れ
+========================================= */
+.section--steps {
+  background: var(--c-bg-dark);
+  color: var(--c-white);
+}
+.section-head--light .section-eyebrow { color: #6a9eff; }
+.section-head--light .section-desc { color: rgba(255, 255, 255, 0.75); }
+.steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  counter-reset: step;
+  position: relative;
+}
+@media (min-width: 768px) {
+  .steps {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .steps::before {
+    content: "";
+    position: absolute;
+    top: 40px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2) 20%, rgba(255,255,255,0.2) 80%, transparent);
+    z-index: 0;
+  }
+}
+.step {
+  position: relative;
+  padding: 32px 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition), background var(--transition);
+  z-index: 1;
+}
+.step:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.07);
+}
+.step-num {
+  display: inline-block;
+  font-family: var(--font-en);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--c-accent);
+  padding: 4px 12px;
+  background: rgba(255, 122, 0, 0.15);
+  border-radius: var(--radius-full);
+  margin-bottom: 16px;
+}
+.step-title {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+.step-text {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.85;
+}
+
+/* =========================================
+   対象者・条件
+========================================= */
+.section--terms { background: var(--c-bg); padding: 60px 0; }
+.terms-box {
+  background: var(--c-bg-alt);
+  border-radius: var(--radius-lg);
+  padding: 48px;
+  border-left: 6px solid var(--c-primary);
+}
+@media (max-width: 767px) {
+  .terms-box { padding: 32px 24px; }
+}
+.terms-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 24px;
+}
+.terms-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.terms-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--c-border);
+}
+.terms-row:last-child { border-bottom: none; padding-bottom: 0; }
+@media (min-width: 600px) {
+  .terms-row {
+    grid-template-columns: 160px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+}
+.terms-row dt {
+  font-weight: 700;
+  color: var(--c-primary);
+  font-size: 14px;
+}
+.terms-row dd {
+  font-size: 14px;
+  color: var(--c-text);
+  line-height: 1.85;
+}
+
+/* =========================================
+   アコーディオン（注意事項 & FAQ）
+========================================= */
+.section--notes { background: var(--c-bg); padding-top: 40px; padding-bottom: 60px; }
+.section--faq { background: var(--c-bg-alt); }
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.accordion-item {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.accordion-item.is-open {
+  border-color: var(--c-primary);
+  box-shadow: var(--shadow-md);
+}
+.accordion-trigger {
+  width: 100%;
+  padding: 20px 24px;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background var(--transition);
+}
+.accordion-trigger:hover { background: var(--c-primary-light); }
+.accordion-trigger > span:first-child { flex: 1; }
+.faq-q {
+  color: var(--c-primary);
+  font-family: var(--font-en);
+  font-size: 18px;
+  font-weight: 900;
+  flex: 0 0 auto !important;
+}
+.faq-q-text { flex: 1; }
+.accordion-icon {
+  width: 24px; height: 24px;
+  position: relative;
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+.accordion-icon::before,
+.accordion-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  background: var(--c-primary);
+  border-radius: 1px;
+  transition: transform var(--transition);
+}
+.accordion-icon::before {
+  width: 12px; height: 2px;
+  transform: translate(-50%, -50%);
+}
+.accordion-icon::after {
+  width: 2px; height: 12px;
+  transform: translate(-50%, -50%);
+}
+.accordion-item.is-open .accordion-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+  opacity: 0;
+}
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.accordion-panel-inner {
+  padding: 0 24px 24px;
+  font-size: 14px;
+  color: var(--c-text-sub);
+  line-height: 1.9;
+}
+.accordion-panel-inner ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.accordion-panel-inner ul li {
+  padding-left: 18px;
+  position: relative;
+}
+.accordion-panel-inner ul li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 12px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--c-primary);
+}
+
+/* =========================================
+   フッターCTA
+========================================= */
+.section--entry {
+  background: linear-gradient(135deg, var(--c-primary), #6a3cff 60%, var(--c-accent));
+  color: var(--c-white);
+  position: relative;
+  overflow: hidden;
+}
+.section--entry::before,
+.section--entry::after {
+  content: "";
+  position: absolute;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+.section--entry::before { top: -200px; left: -100px; }
+.section--entry::after { bottom: -200px; right: -100px; }
+.entry-box {
+  position: relative;
+  text-align: center;
+  padding: 40px 24px;
+}
+.entry-eyebrow {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+}
+.entry-title {
+  font-size: clamp(28px, 4.5vw, 44px);
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+.entry-lead {
+  font-size: 16px;
+  margin-bottom: 36px;
+  color: rgba(255,255,255,0.9);
+}
+.entry-note {
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  margin-top: 20px;
+}
+.section--entry .btn-primary {
+  background: var(--c-white);
+  color: var(--c-accent);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+}
+.section--entry .btn-primary:hover {
+  background: var(--c-white);
+  color: var(--c-accent-dark);
+}
+
+/* =========================================
+   フッター
+========================================= */
+.site-footer {
+  background: var(--c-bg-dark);
+  color: rgba(255,255,255,0.7);
+  padding: 60px 0 24px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+@media (min-width: 768px) {
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+.logo--light { color: var(--c-white); }
+.footer-tagline {
+  font-size: 13px;
+  margin-top: 12px;
+}
+.footer-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 32px;
+}
+@media (min-width: 768px) {
+  .footer-nav { display: flex; justify-content: flex-end; align-items: center; }
+}
+.footer-nav a {
+  font-size: 13px;
+  transition: color var(--transition);
+}
+.footer-nav a:hover { color: var(--c-white); }
+.footer-bottom {
+  padding-top: 24px;
+}
+.footer-copy {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  font-family: var(--font-en);
+}
+
+/* =========================================
+   追従CTA
+========================================= */
+.floating-cta {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 28px;
+  background: var(--c-accent);
+  color: var(--c-white);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 10px 30px rgba(255,122,0,0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity var(--transition), visibility var(--transition), transform var(--transition), background var(--transition);
+}
+.floating-cta.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.floating-cta:hover {
+  background: var(--c-accent-dark);
+  transform: translateY(-4px);
+}
+@media (max-width: 767px) {
+  .floating-cta {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+    justify-content: center;
+    padding: 14px 24px;
+  }
+}
+
+/* =========================================
+   スクロール表示アニメーション
+========================================= */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* リダクションモーション */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+</style>
+<style>
+/* =========================================
+   デザインシステム用スタイル
+   - html.to.design でFigma書き出しすることを想定
+   - 各コンポーネントの状態を静的に並列表示する
+========================================= */
+
+.ds-body {
+  background: #fafbfd;
+  color: #1a1d29;
+  font-family: var(--font-jp);
+  padding-bottom: 80px;
+}
+
+/* ===== カバー ===== */
+.ds-cover {
+  background: linear-gradient(135deg, #0a1230 0%, #15265c 50%, #1e3a8a 100%);
+  color: #fff;
+  padding: 120px 56px;
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+}
+.ds-cover-inner { max-width: 1280px; margin: 0 auto; width: 100%; }
+.ds-cover-title {
+  font-size: 56px;
+  line-height: 1.2;
+  font-weight: 900;
+  margin: 16px 0 24px;
+  letter-spacing: -0.01em;
+}
+.ds-eyebrow {
+  display: inline-block;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  font-weight: 700;
+  padding: 6px 14px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 9999px;
+}
+.ds-cover-meta {
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 40px;
+}
+.ds-cover-index {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  font-family: Inter, "Hiragino Sans", sans-serif;
+  color: rgba(255,255,255,0.9);
+  border-left: 3px solid #ff7a00;
+  padding-left: 16px;
+}
+
+/* ===== セクション枠 ===== */
+.ds-section {
+  max-width: 1280px;
+  margin: 80px auto;
+  padding: 56px;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 2px 8px rgba(10,18,48,0.04);
+}
+@media (max-width: 767px) {
+  .ds-section { margin: 40px 16px; padding: 32px 20px; }
+}
+.ds-section-head {
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid #e3e7ef;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px 24px;
+}
+.ds-section-num {
+  font-family: Inter, sans-serif;
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, #0066ff, #ff7a00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.ds-section-title {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+.ds-section-desc {
+  width: 100%;
+  color: #5a6072;
+  font-size: 14px;
+  line-height: 1.85;
+  margin-top: -4px;
+}
+
+.ds-block {
+  margin-bottom: 56px;
+  padding-bottom: 40px;
+  border-bottom: 1px dashed #e3e7ef;
+}
+.ds-block:last-child { border-bottom: none; margin-bottom: 0; }
+.ds-block-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: #1a1d29;
+}
+.ds-sub-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 24px 0 16px;
+  color: #5a6072;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.ds-note {
+  font-size: 13px;
+  color: #5a6072;
+  margin-bottom: 16px;
+  line-height: 1.85;
+}
+.ds-note--lg {
+  font-size: 14px;
+  background: #e7f0ff;
+  border-left: 4px solid #0066ff;
+  padding: 16px 20px;
+  border-radius: 4px;
+}
+.ds-note code,
+.ds-spec-card code {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  background: #f5f7fb;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.92em;
+  color: #0066ff;
+}
+
+/* ===== カラー ===== */
+.ds-color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.ds-color {
+  background: #fff;
+  border: 1px solid #e3e7ef;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.ds-swatch {
+  height: 100px;
+  width: 100%;
+}
+.ds-swatch--border { border-bottom: 1px solid #e3e7ef; }
+.ds-color-info { padding: 12px 14px; }
+.ds-color-name {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.ds-color-token {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: #5a6072;
+  margin-bottom: 2px;
+  word-break: break-all;
+}
+.ds-color-hex {
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a1d29;
+  letter-spacing: 0.04em;
+}
+
+/* ===== タイポ ===== */
+.ds-type-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.ds-type-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #f0f2f7;
+}
+.ds-type-row:last-child { border-bottom: none; }
+.ds-type-label {
+  border-left: 3px solid #0066ff;
+  padding-left: 12px;
+}
+.ds-type-name {
+  font-size: 13px;
+  font-weight: 700;
+}
+.ds-type-spec {
+  font-family: Inter, sans-serif;
+  font-size: 11px;
+  color: #5a6072;
+  margin-top: 2px;
+}
+.ds-type-sample {
+  color: #1a1d29;
+  margin: 0;
+}
+
+/* ===== 余白 ===== */
+.ds-spacing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 16px;
+  align-items: end;
+}
+.ds-spacing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px;
+  background: #f5f7fb;
+  border-radius: 8px;
+}
+.ds-spacing-bar {
+  height: 12px;
+  background: linear-gradient(90deg, #0066ff, #6a3cff);
+  border-radius: 4px;
+}
+.ds-spacing p {
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1a1d29;
+}
+
+/* ===== 角丸 ===== */
+.ds-radius-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+.ds-radius-item {
+  text-align: center;
+  padding: 16px;
+  background: #f5f7fb;
+  border-radius: 12px;
+}
+.ds-radius-shape {
+  width: 88px;
+  height: 88px;
+  background: linear-gradient(135deg, #0066ff, #6a3cff);
+  margin: 0 auto 12px;
+}
+.ds-radius-name {
+  font-family: "SF Mono", Menlo, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a1d29;
+}
+.ds-radius-spec {
+  font-family: Inter, sans-serif;
+  font-size: 11px;
+  color: #5a6072;
+  margin-top: 2px;
+}
+
+/* ===== シャドウ ===== */
+.ds-shadow-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 24px;
+  padding: 24px;
+  background: #f5f7fb;
+  border-radius: 12px;
+}
+.ds-shadow-item { text-align: center; }
+.ds-shadow-box {
+  width: 100%;
+  height: 100px;
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+/* ===== コンポーネント表示エリア ===== */
+.ds-canvas-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 32px;
+  background: #f5f7fb;
+  border-radius: 12px;
+  align-items: center;
+}
+.ds-canvas-row--dark {
+  background: #0a1230;
+}
+.ds-canvas {
+  background: #fff;
+  border: 1px solid #e3e7ef;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 200px;
+}
+.ds-canvas--dark {
+  background: #0a1230;
+  border-color: #1a2148;
+}
+.ds-canvas-label {
+  font-size: 11px;
+  color: #5a6072;
+  font-family: "SF Mono", Menlo, monospace;
+  text-align: center;
+}
+.ds-canvas--dark .ds-canvas-label { color: rgba(255,255,255,0.7); }
+
+/* ===== マトリクステーブル ===== */
+.ds-matrix {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+}
+.ds-matrix th,
+.ds-matrix td {
+  padding: 20px 16px;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid #e3e7ef;
+}
+.ds-matrix thead th {
+  font-size: 12px;
+  font-weight: 700;
+  color: #5a6072;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: #f5f7fb;
+}
+.ds-matrix tbody th {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1d29;
+  background: #fafbfd;
+  width: 140px;
+}
+.ds-matrix tbody td { background: #fff; }
+.ds-matrix-row--dark td { background: #0a1230; }
+.ds-matrix-row--dark th { background: #1a2148; color: #fff; }
+
+.ds-section-list {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 32px;
+}
+.ds-section-list th,
+.ds-section-list td {
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #e3e7ef;
+}
+.ds-section-list thead th {
+  background: #f5f7fb;
+  font-weight: 700;
+  color: #5a6072;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 11px;
+}
+.ds-section-list tbody td:first-child {
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+  color: #0066ff;
+  width: 50px;
+}
+
+.ds-bp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+.ds-bp-table th,
+.ds-bp-table td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #e3e7ef;
+}
+.ds-bp-table thead th {
+  background: #0a1230;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+.ds-bp-table tbody td:first-child {
+  font-weight: 800;
+  color: #0066ff;
+  font-family: Inter, sans-serif;
+}
+
+/* ===== 実装スペックカード ===== */
+.ds-spec-card {
+  margin-top: 24px;
+  padding: 20px 24px;
+  background: #e7f0ff;
+  border-radius: 12px;
+  border-left: 4px solid #0066ff;
+}
+.ds-spec-card h5 {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0066ff;
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+.ds-spec-card ul {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: #1a1d29;
+  padding-left: 0;
+}
+.ds-spec-card li {
+  padding-left: 18px;
+  position: relative;
+  list-style: none;
+}
+.ds-spec-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0066ff;
+}
+
+/* ===== ASCIIアート ===== */
+.ds-ascii {
+  background: #0a1230;
+  color: #c7d4f0;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  padding: 24px;
+  border-radius: 12px;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* ===== フッター ===== */
+.ds-footer {
+  text-align: center;
+  margin-top: 56px;
+  font-size: 12px;
+  color: #8a90a0;
+}
+
+/* =========================================
+   状態クラス（Force Hover / Disabled）
+   - Figma側でVariant Propertyに転写するために、
+     擬似クラスではなく実クラスでstateを表示する
+========================================= */
+
+/* Primary Button */
+.btn-primary.is-hover {
+  background: var(--c-accent-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(255, 122, 0, 0.5);
+}
+.btn-primary.is-disabled,
+.btn.is-disabled {
+  background: #c5cad6 !important;
+  color: #8a90a0 !important;
+  box-shadow: none !important;
+  pointer-events: none;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Ghost Button */
+.btn-ghost.is-hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+.btn-ghost.is-disabled {
+  border-color: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.4);
+  background: transparent !important;
+}
+
+/* Header CTA */
+.header-cta.is-hover {
+  background: var(--c-accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.45);
+}
+.header-cta.is-disabled {
+  background: #c5cad6;
+  pointer-events: none;
+}
+
+/* Floating CTA */
+.floating-cta.is-hover {
+  background: var(--c-accent-dark);
+  transform: translateY(-4px);
+}
+.floating-cta.is-disabled {
+  background: #c5cad6;
+  box-shadow: none;
+}
+
+/* Overview / Game / Step Card */
+.overview-card.is-hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+.overview-card.is-hover::before {
+  transform: scaleX(1);
+}
+.game-card.is-hover {
+  transform: translateY(-6px) rotate(-1deg);
+  box-shadow: var(--shadow-lg);
+}
+.step.is-hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* デザインシステム表示時は overview-card::before の transition を無効化（既に表示済みのため） */
+.ds-body .overview-card.is-hover::before {
+  transition: none;
+}
+
+/* デザイン表示用のアイコンサンプル背景補正 */
+.ds-canvas .check { background: #ff7a00; }
+.ds-canvas .accordion-icon::before,
+.ds-canvas .accordion-icon::after { background: #0066ff; }
+
+/* レスポンシブ用：マトリクスの横スクロール */
+@media (max-width: 767px) {
+  .ds-matrix,
+  .ds-section-list,
+  .ds-bp-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+</style>
+</head>
+<body class="ds-body">
+
+<!-- ===== カバー ===== -->
+<section class="ds-cover">
+  <div class="ds-cover-inner">
+    <p class="ds-eyebrow">DESIGN SYSTEM v1.0</p>
+    <h1 class="ds-cover-title">CloudPlay BOX × NexMobile<br>キャンペーンLP</h1>
+    <p class="ds-cover-meta">作成日：2026-05-22 ／ 制作：WSB ／ 想定ブレイクポイント：375 / 768 / 1280</p>
+    <ul class="ds-cover-index">
+      <li>01 — Design Tokens（色・タイポ・余白・角丸・影）</li>
+      <li>02 — Foundations（ロゴ・アイコン）</li>
+      <li>03 — Components（ボタン・カード・アコーディオン・他）</li>
+      <li>04 — Sections（ヘッダー／ヒーロー／各セクション）</li>
+      <li>05 — Responsive（ブレイクポイント別レイアウト）</li>
+    </ul>
+  </div>
+</section>
+
+<!-- =========================================
+     01. Design Tokens
+========================================= -->
+<section class="ds-section">
+  <header class="ds-section-head">
+    <span class="ds-section-num">01</span>
+    <h2 class="ds-section-title">Design Tokens</h2>
+    <p class="ds-section-desc">CSS変数として定義済み。Figmaではローカルスタイルとして登録してください。</p>
+  </header>
+
+  <!-- 1.1 カラー -->
+  <div class="ds-block">
+    <h3 class="ds-block-title">1.1 Color Palette</h3>
+
+    <h4 class="ds-sub-title">Primary / Brand</h4>
+    <div class="ds-color-grid">
+      <div class="ds-color">
+        <div class="ds-swatch" style="background:#0066ff"></div>
+        <div class="ds-color-info">
+          <p class="ds-color-name">Primary</p>
+          <p class="ds-color-token">--c-primary</p>
+          <p class="ds-color-hex">#0066FF</p>
+        </div>
+      </div>
+      <div class="ds-color">
+        <div class="ds-swatch" style="background:#0048b8"></div>
+        <div class="ds-color-info">
+          <p class="ds-color-name">Primary Dark</p>
+          <p class="ds-color-token">--c-primary-dark</p>
+          <p class="ds-color-hex">#0048B8</p>
+        </div>
+      </div>
+      <div class="ds-color">
+        <div class="ds-swatch ds-swatch--border" style="background:#e7f0ff"></div>
+        <div class="ds-color-info">
+          <p class="ds-color-name">Primary Light</p>
+          <p class="ds-color-token">--c-primary-light</p>
+          <p class="ds-color-hex">#E7F0FF</p>
+        </div>
+      </div>
+      <div class="ds-color">
+        <div class="ds-swatch" style="background:#ff7a00"></div>
+        <div class="ds-color-info">
+          <p class="ds-color-name">Accent</p>
+          <p class="ds-color-token">--c-accent</p>
+          <p class="ds-color-hex">#FF7A00</p>
+        </div>
+      </div>
+      <div class="ds-color">
+        <div class="ds-swatch" style="background:#e56a00"></div>
+        <div class="ds-color-info">
+          <p class="ds-color-name">Accent Dark</p>
+          <p class="ds-color-token">--c-accent-dark</p>
+          <p class="ds-color-hex">#E56A00</p>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="ds-sub-title">Text</h4>
+    <div class="ds-color-grid">
+      <div class="ds-color">
+        <div class="ds-swatch" style="background:#1a1d29"></div>
+        <div class="ds-color-info">
+          <p class="ds-color-name">Text</p>
+          <p class="ds-color-token">--c-text</p>
+          <p class="ds-color-hex">#1A1D29</p>
+        </div>
+      </div>
+      <div class="ds-color">
+        <div class="ds-swatch" style="background:#5a6072"></div>
+        <div class="ds-color-info">
+          <p class="ds-color-name">Text Sub</p>
+          <p class="ds-color-token">--c-text-sub</p>
+          <p class="ds-color-hex">#5A6072</p>
+        </div>
+      </div>
+      <div class="ds-color">
+        <div class="ds-swatch" style="background:#8a90a0"></div>
+        <div class="ds-color-info">
+          <p class="ds-color-name">Text Light</p>
+          <p class="ds-color-token">--c-text-light</p>
+          <p class="ds-color-hex">#8A90A0</p>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="ds-sub-title">Background / Surface</h4>
+    <div class="ds-color-grid">
+      <div class="ds-color">
+        <div class="ds-swatch ds-swatch--border" style="background:#ffffff"></div>
+        <div class="ds-color-info">
+          <p class="ds-color-name">Background</p>
+          <p class="ds-color-token">--c-bg</p>
+          <p class="ds-color-hex">#FFFFFF</p>
+        </div>
+      </div>
+      <div class="ds-color">
+        <div class="ds-swatch ds-swatch--border" style="background:#f5f7fb"></div>
+        <div class="ds-color-info">
+          <p class="ds-color-name">Background Alt</p>
+          <p class="ds-color-token">--c-bg-alt</p>
+          <p class="ds-color-hex">#F5F7FB</p>
+        </div>
+      </div>
+      <div class="ds-color">
+        <div class="ds-swatch" style="background:#0a1230"></div>
+        <div class="ds-color-info">
+          <p class="ds-color-name">Background Dark</p>
+          <p class="ds-color-token">--c-bg-dark</p>
+          <p class="ds-color-hex">#0A1230</p>
+        </div>
+      </div>
+      <div class="ds-color">
+        <div class="ds-swatch ds-swatch--border" style="background:#e3e7ef"></div>
+        <div class="ds-color-info">
+          <p class="ds-color-name">Border</p>
+          <p class="ds-color-token">--c-border</p>
+          <p class="ds-color-hex">#E3E7EF</p>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="ds-sub-title">Gradients</h4>
+    <div class="ds-color-grid">
+      <div class="ds-color">
+        <div class="ds-swatch" style="background:linear-gradient(135deg,#0a1230 0%,#15265c 50%,#1e3a8a 100%)"></div>
+        <div class="ds-color-info">
+          <p class="ds-color-name">Hero BG</p>
+          <p class="ds-color-token">135deg, #0A1230 → #15265C → #1E3A8A</p>
+        </div>
+      </div>
+      <div class="ds-color">
+        <div class="ds-swatch" style="background:linear-gradient(135deg,#0066ff,#6a3cff 60%,#ff7a00)"></div>
+        <div class="ds-color-info">
+          <p class="ds-color-name">Entry CTA BG</p>
+          <p class="ds-color-token">135deg, #0066FF → #6A3CFF → #FF7A00</p>
+        </div>
+      </div>
+      <div class="ds-color">
+        <div class="ds-swatch" style="background:linear-gradient(90deg,#ffd96a,#ff7a00);"></div>
+        <div class="ds-color-info">
+          <p class="ds-color-name">Text Accent Gradient</p>
+          <p class="ds-color-token">90deg, #FFD96A → #FF7A00</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1.2 タイポグラフィ -->
+  <div class="ds-block">
+    <h3 class="ds-block-title">1.2 Typography</h3>
+    <p class="ds-note">日本語: Hiragino Sans / Noto Sans JP ／ 英数字: Inter</p>
+
+    <div class="ds-type-list">
+      <div class="ds-type-row">
+        <div class="ds-type-label">
+          <p class="ds-type-name">Display</p>
+          <p class="ds-type-spec">64 / 72 / 900 / -1%</p>
+        </div>
+        <p class="ds-type-sample" style="font-size:64px;line-height:1.15;font-weight:900;letter-spacing:-0.01em">クラウドゲームを、</p>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-label">
+          <p class="ds-type-name">H1 / Hero Title</p>
+          <p class="ds-type-spec">48 / 56 / 900</p>
+        </div>
+        <p class="ds-type-sample" style="font-size:48px;line-height:1.2;font-weight:900">ポケットの中へ。</p>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-label">
+          <p class="ds-type-name">H2 / Section Title</p>
+          <p class="ds-type-spec">40 / 52 / 900</p>
+        </div>
+        <p class="ds-type-sample" style="font-size:40px;line-height:1.3;font-weight:900">キャンペーン概要</p>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-label">
+          <p class="ds-type-name">H3 / Card Title</p>
+          <p class="ds-type-spec">20 / 28 / 800</p>
+        </div>
+        <p class="ds-type-sample" style="font-size:20px;line-height:1.4;font-weight:800">好きな1本を選べる</p>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-label">
+          <p class="ds-type-name">H4 / Sub Title</p>
+          <p class="ds-type-spec">18 / 26 / 800</p>
+        </div>
+        <p class="ds-type-sample" style="font-size:18px;line-height:1.45;font-weight:800">STEP 01 セットプランを申込</p>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-label">
+          <p class="ds-type-name">Body L</p>
+          <p class="ds-type-spec">16 / 30 / 400</p>
+        </div>
+        <p class="ds-type-sample" style="font-size:16px;line-height:1.85">セット申込で対象ゲームソフト1本を無料プレゼント。期間限定です。</p>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-label">
+          <p class="ds-type-name">Body M</p>
+          <p class="ds-type-spec">14 / 26 / 400</p>
+        </div>
+        <p class="ds-type-sample" style="font-size:14px;line-height:1.85">アクション、RPG、パズルなど10タイトルから1本を選択できます。</p>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-label">
+          <p class="ds-type-name">Caption</p>
+          <p class="ds-type-spec">12 / 18 / 500</p>
+        </div>
+        <p class="ds-type-sample" style="font-size:12px;line-height:1.5;color:#8a90a0">※ ラインナップは予告なく変更される場合があります。</p>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-label">
+          <p class="ds-type-name">Eyebrow / EN</p>
+          <p class="ds-type-spec">12 / 18 / 700 / +25%</p>
+        </div>
+        <p class="ds-type-sample" style="font-size:12px;line-height:1.5;font-weight:700;letter-spacing:0.25em;font-family:Inter,sans-serif;color:#0066ff">CAMPAIGN OVERVIEW</p>
+      </div>
+      <div class="ds-type-row">
+        <div class="ds-type-label">
+          <p class="ds-type-name">Number / EN</p>
+          <p class="ds-type-spec">48 / 48 / 900</p>
+        </div>
+        <p class="ds-type-sample" style="font-size:48px;line-height:1;font-weight:900;font-family:Inter,sans-serif;background:linear-gradient(135deg,#0066ff,#ff7a00);-webkit-background-clip:text;-webkit-text-fill-color:transparent">01</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1.3 余白 -->
+  <div class="ds-block">
+    <h3 class="ds-block-title">1.3 Spacing Scale (4pt baseline)</h3>
+    <div class="ds-spacing-grid">
+      <div class="ds-spacing"><div class="ds-spacing-bar" style="width:4px"></div><p>4</p></div>
+      <div class="ds-spacing"><div class="ds-spacing-bar" style="width:8px"></div><p>8</p></div>
+      <div class="ds-spacing"><div class="ds-spacing-bar" style="width:12px"></div><p>12</p></div>
+      <div class="ds-spacing"><div class="ds-spacing-bar" style="width:16px"></div><p>16</p></div>
+      <div class="ds-spacing"><div class="ds-spacing-bar" style="width:20px"></div><p>20</p></div>
+      <div class="ds-spacing"><div class="ds-spacing-bar" style="width:24px"></div><p>24</p></div>
+      <div class="ds-spacing"><div class="ds-spacing-bar" style="width:32px"></div><p>32</p></div>
+      <div class="ds-spacing"><div class="ds-spacing-bar" style="width:40px"></div><p>40</p></div>
+      <div class="ds-spacing"><div class="ds-spacing-bar" style="width:48px"></div><p>48</p></div>
+      <div class="ds-spacing"><div class="ds-spacing-bar" style="width:56px"></div><p>56</p></div>
+      <div class="ds-spacing"><div class="ds-spacing-bar" style="width:64px"></div><p>64</p></div>
+      <div class="ds-spacing"><div class="ds-spacing-bar" style="width:80px"></div><p>80</p></div>
+      <div class="ds-spacing"><div class="ds-spacing-bar" style="width:100px"></div><p>100</p></div>
+    </div>
+    <p class="ds-note">セクション縦余白: PC 100px / SP 64px ／ コンテナ最大幅: 1120px ／ 横padding: 24px</p>
+  </div>
+
+  <!-- 1.4 角丸 -->
+  <div class="ds-block">
+    <h3 class="ds-block-title">1.4 Border Radius</h3>
+    <div class="ds-radius-grid">
+      <div class="ds-radius-item">
+        <div class="ds-radius-shape" style="border-radius:8px"></div>
+        <p class="ds-radius-name">radius-sm</p>
+        <p class="ds-radius-spec">8px</p>
+      </div>
+      <div class="ds-radius-item">
+        <div class="ds-radius-shape" style="border-radius:16px"></div>
+        <p class="ds-radius-name">radius-md</p>
+        <p class="ds-radius-spec">16px</p>
+      </div>
+      <div class="ds-radius-item">
+        <div class="ds-radius-shape" style="border-radius:24px"></div>
+        <p class="ds-radius-name">radius-lg</p>
+        <p class="ds-radius-spec">24px</p>
+      </div>
+      <div class="ds-radius-item">
+        <div class="ds-radius-shape" style="border-radius:9999px"></div>
+        <p class="ds-radius-name">radius-full</p>
+        <p class="ds-radius-spec">9999px</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1.5 シャドウ -->
+  <div class="ds-block">
+    <h3 class="ds-block-title">1.5 Shadow</h3>
+    <div class="ds-shadow-grid">
+      <div class="ds-shadow-item">
+        <div class="ds-shadow-box" style="box-shadow:0 2px 8px rgba(10,18,48,0.06)"></div>
+        <p class="ds-radius-name">shadow-sm</p>
+        <p class="ds-radius-spec">0 2 8 / rgba(10,18,48,0.06)</p>
+      </div>
+      <div class="ds-shadow-item">
+        <div class="ds-shadow-box" style="box-shadow:0 8px 24px rgba(10,18,48,0.08)"></div>
+        <p class="ds-radius-name">shadow-md</p>
+        <p class="ds-radius-spec">0 8 24 / rgba(10,18,48,0.08)</p>
+      </div>
+      <div class="ds-shadow-item">
+        <div class="ds-shadow-box" style="box-shadow:0 16px 48px rgba(10,18,48,0.12)"></div>
+        <p class="ds-radius-name">shadow-lg</p>
+        <p class="ds-radius-spec">0 16 48 / rgba(10,18,48,0.12)</p>
+      </div>
+      <div class="ds-shadow-item">
+        <div class="ds-shadow-box" style="box-shadow:0 8px 24px rgba(255,122,0,0.4)"></div>
+        <p class="ds-radius-name">shadow-cta</p>
+        <p class="ds-radius-spec">0 8 24 / rgba(255,122,0,0.4)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     02. Foundations
+========================================= -->
+<section class="ds-section">
+  <header class="ds-section-head">
+    <span class="ds-section-num">02</span>
+    <h2 class="ds-section-title">Foundations</h2>
+    <p class="ds-section-desc">ロゴ・アイコンなどの基本要素</p>
+  </header>
+
+  <div class="ds-block">
+    <h3 class="ds-block-title">2.1 Logo</h3>
+    <div class="ds-canvas-row">
+      <div class="ds-canvas">
+        <a href="#" class="logo">
+          <span class="logo-mark" aria-hidden="true"></span>
+          <span class="logo-text">NexMobile</span>
+        </a>
+        <p class="ds-canvas-label">Logo / Default (Light BG)</p>
+      </div>
+      <div class="ds-canvas ds-canvas--dark">
+        <a href="#" class="logo logo--light">
+          <span class="logo-mark" aria-hidden="true"></span>
+          <span class="logo-text">NexMobile</span>
+        </a>
+        <p class="ds-canvas-label">Logo / Inverse (Dark BG)</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-block">
+    <h3 class="ds-block-title">2.2 Icons</h3>
+    <div class="ds-canvas-row">
+      <div class="ds-canvas">
+        <span class="check" aria-hidden="true"></span>
+        <p class="ds-canvas-label">Check / 22px / accent fill</p>
+      </div>
+      <div class="ds-canvas">
+        <span class="btn-arrow" style="color:#1a1d29" aria-hidden="true"></span>
+        <p class="ds-canvas-label">Arrow / 18px / currentColor</p>
+      </div>
+      <div class="ds-canvas">
+        <span class="accordion-icon" aria-hidden="true"></span>
+        <p class="ds-canvas-label">Plus / 24px / primary</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     03. Components
+========================================= -->
+<section class="ds-section">
+  <header class="ds-section-head">
+    <span class="ds-section-num">03</span>
+    <h2 class="ds-section-title">Components</h2>
+    <p class="ds-section-desc">全Variantを並列表示。Figmaではコンポーネント化＋Variant Propertyに対応。</p>
+  </header>
+
+  <!-- ボタン -->
+  <div class="ds-block">
+    <h3 class="ds-block-title">3.1 Button</h3>
+    <p class="ds-note">サイズ × 種類 × 状態 のマトリクス</p>
+
+    <table class="ds-matrix">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Default</th>
+          <th>Hover</th>
+          <th>Disabled</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Primary / MD</th>
+          <td><a class="btn btn-primary">無料でゲームをもらう<span class="btn-arrow"></span></a></td>
+          <td><a class="btn btn-primary is-hover">無料でゲームをもらう<span class="btn-arrow"></span></a></td>
+          <td><a class="btn btn-primary is-disabled">無料でゲームをもらう<span class="btn-arrow"></span></a></td>
+        </tr>
+        <tr>
+          <th>Primary / LG</th>
+          <td><a class="btn btn-primary btn-lg">無料でゲームをもらう<span class="btn-arrow"></span></a></td>
+          <td><a class="btn btn-primary btn-lg is-hover">無料でゲームをもらう<span class="btn-arrow"></span></a></td>
+          <td><a class="btn btn-primary btn-lg is-disabled">無料でゲームをもらう<span class="btn-arrow"></span></a></td>
+        </tr>
+        <tr>
+          <th>Primary / XL</th>
+          <td><a class="btn btn-primary btn-xl">無料でゲームをもらう<span class="btn-arrow"></span></a></td>
+          <td><a class="btn btn-primary btn-xl is-hover">無料でゲームをもらう<span class="btn-arrow"></span></a></td>
+          <td><a class="btn btn-primary btn-xl is-disabled">無料でゲームをもらう<span class="btn-arrow"></span></a></td>
+        </tr>
+        <tr class="ds-matrix-row--dark">
+          <th>Ghost / MD</th>
+          <td><a class="btn btn-ghost">キャンペーン詳細</a></td>
+          <td><a class="btn btn-ghost is-hover">キャンペーン詳細</a></td>
+          <td><a class="btn btn-ghost is-disabled">キャンペーン詳細</a></td>
+        </tr>
+        <tr>
+          <th>Header CTA</th>
+          <td><a class="header-cta" style="position:static;display:inline-block">今すぐ申込</a></td>
+          <td><a class="header-cta is-hover" style="position:static;display:inline-block">今すぐ申込</a></td>
+          <td><a class="header-cta is-disabled" style="position:static;display:inline-block">今すぐ申込</a></td>
+        </tr>
+        <tr>
+          <th>Floating CTA</th>
+          <td>
+            <a class="floating-cta is-visible" style="position:static">
+              <span class="floating-cta-text">今すぐ申込</span>
+              <span class="btn-arrow"></span>
+            </a>
+          </td>
+          <td>
+            <a class="floating-cta is-visible is-hover" style="position:static">
+              <span class="floating-cta-text">今すぐ申込</span>
+              <span class="btn-arrow"></span>
+            </a>
+          </td>
+          <td>
+            <a class="floating-cta is-visible is-disabled" style="position:static">
+              <span class="floating-cta-text">今すぐ申込</span>
+              <span class="btn-arrow"></span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="ds-spec-card">
+      <h5>実装メモ</h5>
+      <ul>
+        <li>パディング: MD 16/32 ／ LG 18/36 ／ XL 22/48</li>
+        <li>角丸: <code>border-radius: 9999px</code>（フルラウンド）</li>
+        <li>ホバー時アニメーション: <code>translateY(-3px)</code> + シャドウ拡大 + 光沢スイープ</li>
+        <li>矢印アイコンはHover時に <code>translateX(4px)</code></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- カード -->
+  <div class="ds-block">
+    <h3 class="ds-block-title">3.2 Card</h3>
+
+    <h4 class="ds-sub-title">3.2.1 Overview Card</h4>
+    <div class="ds-canvas-row">
+      <article class="overview-card" style="max-width:340px">
+        <div class="overview-num">01</div>
+        <h3 class="overview-title">好きな1本を選べる</h3>
+        <p class="overview-text">アクション、RPG、パズルなど10タイトルから1本を選択。</p>
+      </article>
+      <article class="overview-card is-hover" style="max-width:340px">
+        <div class="overview-num">01</div>
+        <h3 class="overview-title">好きな1本を選べる</h3>
+        <p class="overview-text">Hover状態：浮上＋上部にグラデライン表示</p>
+      </article>
+    </div>
+
+    <h4 class="ds-sub-title">3.2.2 Game Card</h4>
+    <div class="ds-canvas-row">
+      <article class="game-card" style="max-width:200px">
+        <div class="game-cover game-cover--a"><span class="game-cover-label">A</span></div>
+        <h3 class="game-title">スターラッシュ・サーガ</h3>
+        <p class="game-genre">アクションRPG</p>
+      </article>
+      <article class="game-card is-hover" style="max-width:200px">
+        <div class="game-cover game-cover--b"><span class="game-cover-label">B</span></div>
+        <h3 class="game-title">ブロックパレード</h3>
+        <p class="game-genre">パズル / Hover</p>
+      </article>
+    </div>
+
+    <h4 class="ds-sub-title">3.2.3 Step Card</h4>
+    <div class="ds-canvas-row ds-canvas-row--dark">
+      <li class="step" style="list-style:none;max-width:280px">
+        <div class="step-num">STEP 01</div>
+        <h3 class="step-title">セットプランを申込</h3>
+        <p class="step-text">公式サイトで「クラウドプレイBOXセット」を選択し申込。</p>
+      </li>
+      <li class="step is-hover" style="list-style:none;max-width:280px">
+        <div class="step-num">STEP 02</div>
+        <h3 class="step-title">対象ソフトを選ぶ</h3>
+        <p class="step-text">Hover状態：背景が明るくなる</p>
+      </li>
+    </div>
+
+    <h4 class="ds-sub-title">3.2.4 Floating Card (Hero Decoration)</h4>
+    <div class="ds-canvas-row">
+      <div class="floating-card floating-card--gift" style="position:static">
+        <span class="floating-card-label">プレゼント</span>
+        <span class="floating-card-value">対象ソフト1本</span>
+      </div>
+      <div class="floating-card floating-card--price" style="position:static">
+        <span class="floating-card-label">月額</span>
+        <span class="floating-card-value"><em>980</em>円〜</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- アコーディオン -->
+  <div class="ds-block">
+    <h3 class="ds-block-title">3.3 Accordion</h3>
+    <div class="ds-canvas-row" style="flex-direction:column;align-items:stretch">
+      <div class="accordion" style="max-width:720px">
+        <div class="accordion-item">
+          <button type="button" class="accordion-trigger" aria-expanded="false">
+            <span>Closed（デフォルト）</span>
+            <span class="accordion-icon"></span>
+          </button>
+        </div>
+        <div class="accordion-item is-open">
+          <button type="button" class="accordion-trigger" aria-expanded="true">
+            <span>Open（開いた状態）</span>
+            <span class="accordion-icon"></span>
+          </button>
+          <div class="accordion-panel" style="max-height:200px">
+            <div class="accordion-panel-inner">
+              <ul>
+                <li>パネル内テキストはBody Mサイズ</li>
+                <li>箇条書きは6pxプライマリドット</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="ds-sub-title">FAQ Variant（Q.プレフィックス付き）</h4>
+    <div class="accordion" style="max-width:720px">
+      <div class="accordion-item">
+        <button type="button" class="accordion-trigger" aria-expanded="false">
+          <span class="faq-q">Q.</span>
+          <span class="faq-q-text">既にネクスモバイルを契約していますが対象になりますか？</span>
+          <span class="accordion-icon"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- バッジ -->
+  <div class="ds-block">
+    <h3 class="ds-block-title">3.4 Badge / Pill</h3>
+    <div class="ds-canvas-row">
+      <span class="ds-demo-eyebrow" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);color:#fff;padding:6px 14px;border-radius:9999px;font-size:12px;letter-spacing:0.2em;font-weight:700;font-family:Inter,sans-serif;background-color:#0a1230">SET DEAL CAMPAIGN 2026</span>
+      <span style="background:rgba(255,122,0,0.15);color:#ff7a00;padding:4px 12px;border-radius:9999px;font-size:11px;letter-spacing:0.2em;font-weight:700;font-family:Inter,sans-serif">STEP 01</span>
+      <span style="background:#e7f0ff;color:#0066ff;padding:8px 20px;border-radius:9999px;font-size:13px;font-weight:700">受付期間：6/30まで</span>
+    </div>
+  </div>
+
+  <!-- リスト -->
+  <div class="ds-block">
+    <h3 class="ds-block-title">3.5 Check List</h3>
+    <ul class="hero-points" style="background:#0a1230;padding:24px;border-radius:16px;max-width:480px">
+      <li style="color:#fff"><span class="check"></span>新規・MNP・既存ユーザーすべて対象</li>
+      <li style="color:#fff"><span class="check"></span>10タイトルから自由に選べる</li>
+      <li style="color:#fff"><span class="check"></span>申込から最短3日でお届け</li>
+    </ul>
+  </div>
+
+  <!-- 定義リスト -->
+  <div class="ds-block">
+    <h3 class="ds-block-title">3.6 Terms Box (Definition List)</h3>
+    <div class="terms-box" style="max-width:720px">
+      <h2 class="terms-title">対象者・適用条件</h2>
+      <dl class="terms-list">
+        <div class="terms-row">
+          <dt>対象者</dt>
+          <dd>ネクスモバイル回線とクラウドプレイBOXをセット申込される個人のお客さま</dd>
+        </div>
+        <div class="terms-row">
+          <dt>申込期間</dt>
+          <dd>2026年4月1日(水) 〜 2026年6月30日(火) 23:59</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     04. Sections (Blueprint)
+========================================= -->
+<section class="ds-section">
+  <header class="ds-section-head">
+    <span class="ds-section-num">04</span>
+    <h2 class="ds-section-title">Section Blueprints</h2>
+    <p class="ds-section-desc">各セクションの組み方。それぞれFigmaのフレームになる単位を意識して作成。</p>
+  </header>
+
+  <p class="ds-note ds-note--lg">
+    実際の各セクションは
+    <a href="./index.html" target="_blank" style="color:#0066ff;text-decoration:underline">index.html</a>
+    にフル状態で実装済みです。html.to.designでURL指定する場合は <code>http://localhost:8821/index.html</code> を指定してください。
+  </p>
+
+  <table class="ds-section-list">
+    <thead>
+      <tr><th>#</th><th>セクション</th><th>用途</th><th>主な要素</th><th>背景</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>4.1</td><td><strong>Header</strong></td><td>サイト全体ナビ・追従</td><td>Logo / Nav / CTA / Hamburger</td><td>透明 → スクロール後 白92%/blur</td></tr>
+      <tr><td>4.2</td><td><strong>Hero</strong></td><td>キービジュアル・1stCTA</td><td>Eyebrow / Title (gradient) / Lead / Points / CTA×2 / Period / Device illustration / Floating Cards / Scroll hint</td><td>濃紺グラデ＋ブロブアニメ</td></tr>
+      <tr><td>4.3</td><td><strong>Overview</strong></td><td>サービス3つの強み</td><td>Section head / Overview Card×3</td><td>白</td></tr>
+      <tr><td>4.4</td><td><strong>Lineup</strong></td><td>対象ソフト10タイトル</td><td>Section head / Game Card×10 / Note</td><td>F5F7FB</td></tr>
+      <tr><td>4.5</td><td><strong>Steps</strong></td><td>応募の流れ</td><td>Section head (light) / Step×4 with connector line</td><td>0A1230</td></tr>
+      <tr><td>4.6</td><td><strong>Terms</strong></td><td>対象者・条件</td><td>Terms Box (left primary border)</td><td>白</td></tr>
+      <tr><td>4.7</td><td><strong>Notes</strong></td><td>注意事項アコーディオン</td><td>Accordion×3</td><td>白</td></tr>
+      <tr><td>4.8</td><td><strong>FAQ</strong></td><td>よくある質問</td><td>Accordion (FAQ variant)×5</td><td>F5F7FB</td></tr>
+      <tr><td>4.9</td><td><strong>Entry CTA</strong></td><td>最終コンバージョン</td><td>Pill / Title / Lead / Primary Button XL / Note</td><td>マルチカラーグラデ</td></tr>
+      <tr><td>4.10</td><td><strong>Footer</strong></td><td>サイト情報・補助ナビ</td><td>Logo / Tagline / Footer Nav / Copyright</td><td>0A1230</td></tr>
+      <tr><td>4.11</td><td><strong>Floating CTA</strong></td><td>追従コンバージョン</td><td>Pill button with arrow</td><td>透明（右下固定）</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="ds-sub-title">4.2 Hero / Layout Blueprint</h4>
+  <pre class="ds-ascii">
+┌─────────────────────────────────────────────────────────────┐
+│ Header (fixed, h:72)                                        │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  ┌─────────────────────────┐    ┌──────────────────────┐    │
+│  │ ▸ Eyebrow Pill          │    │                      │    │
+│  │ H1: クラウドゲームを、    │    │   ┌────────────┐    │    │
+│  │     ポケットの中へ。     │    │   │  Device    │    │    │
+│  │ Lead (3 lines)          │    │   │  16:10     │    │    │
+│  │ ✓ Point 1               │    │   │  + Glow    │    │    │
+│  │ ✓ Point 2               │    │   │  + Grid×4  │    │    │
+│  │ ✓ Point 3               │    │   └────────────┘    │    │
+│  │ [Primary CTA] [Ghost]   │    │   ↑Gift FC ↓Price FC│    │
+│  │ 期間表記                │    │                      │    │
+│  └─────────────────────────┘    └──────────────────────┘    │
+│                                                             │
+│                       SCROLL ↓                              │
+└─────────────────────────────────────────────────────────────┘
+  </pre>
+</section>
+
+<!-- =========================================
+     05. Responsive
+========================================= -->
+<section class="ds-section">
+  <header class="ds-section-head">
+    <span class="ds-section-num">05</span>
+    <h2 class="ds-section-title">Responsive</h2>
+    <p class="ds-section-desc">3ブレイクポイント設計。SPデザインは375px、TBは768px、PCは1280px基準。</p>
+  </header>
+
+  <table class="ds-bp-table">
+    <thead>
+      <tr><th>BP</th><th>幅</th><th>用途</th><th>レイアウト変化</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>SP</td>
+        <td>375 〜 599</td>
+        <td>スマホ</td>
+        <td>1カラム ／ ハンバーガーメニュー ／ セクション余白 64px ／ Hero縦並び ／ Steps 1列</td>
+      </tr>
+      <tr>
+        <td>TB</td>
+        <td>600 〜 959</td>
+        <td>タブレット</td>
+        <td>Overview/Steps 横並び ／ Lineup 3列 ／ ハンバーガー継続</td>
+      </tr>
+      <tr>
+        <td>PC</td>
+        <td>960 〜 1280+</td>
+        <td>デスクトップ</td>
+        <td>Hero左右2分割 ／ Lineup 5列 ／ ナビ展開 ／ ヘッダーCTA表示</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="ds-note">
+    Figmaフレーム推奨サイズ：<strong>SP: 375 × 自動</strong> ／ <strong>PC: 1440 × 自動</strong>
+    （実装の最大幅は1120pxですが、Figmaは外側余白も含めて1440で作るのが実務で扱いやすいです）
+  </p>
+</section>
+
+<footer class="ds-footer">
+  <p>© 2026 NexMobile Inc. (架空のサンプルサイトです) ／ Design System for Figma import</p>
+</footer>
+
+</body>
+</html>
